@@ -1,7 +1,7 @@
 ({
-	doInit : function(component, event, helper){
+  doInit : function(component, event, helper){
     helper.fetchMyAccounts(component, event, helper);
-	},
+  },
   handleGenericEvent : function(component, event, helper){
     var payload = event.getParam('payload');
     switch(event.getParam('actionType')){

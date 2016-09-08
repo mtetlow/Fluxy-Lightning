@@ -1,11 +1,11 @@
 ({
-	fetchMyAccounts : function(component, event, helper) {
+  fetchMyAccounts : function(component, event, helper) {
     var action = component.get("c.getMyAccounts");
     action.setCallback(this, function(response){
       helper.parseMyAccountsResponse(response, component, event, helper);
     });
     $A.enqueueAction(action);
-	},
+  },
   //This method applies the server response to the component
   parseMyAccountsResponse : function(response, component, event, helper){
     var state = response.getState();

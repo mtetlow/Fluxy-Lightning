@@ -1,5 +1,5 @@
 ({
-	_navigateToRecord : function(component, event, helper) {
+  _navigateToRecord : function(component, event, helper) {
     //Fire the event to navigate to the account, this is handled in flAccountEditor
     var accountId = component.get('v.account.Id');
     var navigateToRecordEvent = component.getEvent('genericEvent');
@@ -10,7 +10,7 @@
       }
     });
     navigateToRecordEvent.fire();
-	},
+  },
   _toggleAccountExpanded : function(component, event, helper){
     //Fire the event to expand the account to show contacts, this is handled in flAccountEditor
     var accountId = component.get('v.account.Id');

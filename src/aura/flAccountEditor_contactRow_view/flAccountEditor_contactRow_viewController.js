@@ -1,5 +1,5 @@
 ({
-	_navigateToRecord : function(component, event, helper) {
+  _navigateToRecord : function(component, event, helper) {
     //Fire the event to navigate to a specific record id, this is handled in flAccountEditor
     var contactId = component.get('v.contact.Id');
     var navigateToRecordEvent = component.getEvent('genericEvent');
