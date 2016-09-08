@@ -1,0 +1,18 @@
+<aura:component>
+  <aura:attribute name="contact" type="Object" />
+  <aura:registerEvent name="genericEvent" type="c:flGenericEvent"/>
+  <tr class="slds-hint-parent">
+    <th scope="row">
+      <div class="slds-truncate" title="{!v.contact.Name}"><a onclick="{!c._navigateToRecord}">{!v.contact.Name}</a></div>
+    </th>
+    <td>
+      <div class="slds-truncate" title="{!v.contact.Title}">{!v.contact.Title}</div>
+    </td>
+    <td>
+      <div class="slds-truncate" title="{!v.contact.Email}">{!v.contact.Email}</div>
+    </td>
+    <td>
+      <div class="slds-truncate delete-contact" onclick="{!c._deleteContact}">x</div>
+    </td>
+  </tr>
+</aura:component>

@@ -1,0 +1,20 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="flAccountEditorCtrl">
+  <aura:attribute name="accounts" type="Array" />
+  <aura:attribute name="expandedAccountId" type="String" />
+  <aura:attribute name="newContactExpandedAccountId" type="String" />
+  <aura:attribute name="operationPending" type="Boolean" default="false" />
+
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:handler name="genericEvent" event="c:flGenericEvent" action="{!c.handleGenericEvent}"/>
+  <div class="account-editor--container">
+    <aura:if isTrue="{!v.operationPending == true}">
+      <c:flLoadingMask />
+    </aura:if>
+    <aura:iteration items="{!v.accounts}" var="account">
+      <c:flAccountEditor_accountDetails_view
+        account="{!account}"
+        isExpanded="{!(account.Id == v.expandedAccountId) ? true : false}"
+        showNewContactForm="{!(account.Id == v.newContactExpandedAccountId) ? true : false}" />
+    </aura:iteration>
+  </div>
+</aura:component>

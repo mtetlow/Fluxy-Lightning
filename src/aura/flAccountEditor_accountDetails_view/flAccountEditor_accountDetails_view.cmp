@@ -1,0 +1,83 @@
+<aura:component>
+  <aura:attribute name="account" type="Object" />
+  <aura:attribute name="isExpanded" type="Boolean" />
+  <aura:attribute name="showNewContactForm" type="Boolean" />
+  <aura:registerEvent name="genericEvent" type="c:flGenericEvent"/>
+  <article class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media--center slds-has-flexi-truncate">
+        <div class="slds-media__figure">
+          <aura:if isTrue="{!v.isExpanded}">
+            <div onclick="{!c._toggleAccountExpanded}" class="contact-toggle">-</div>
+          </aura:if>
+          <aura:if isTrue="{!!v.isExpanded}">
+            <div onclick="{!c._toggleAccountExpanded}" class="contact-toggle">+</div>
+          </aura:if>
+        </div>
+        <div class="slds-media__body slds-truncate">
+          <h2>
+            <a onclick="{!c._navigateToRecord}" class="slds-text-link--reset">
+              <span class="slds-text-heading--small">{!v.account.Name}</span>
+            </a>
+          </h2>
+        </div>
+      </header>
+      <div class="slds-no-flex">
+        <aura:if isTrue="{!!v.showNewContactForm}">
+          <button class="slds-button slds-button--neutral" onclick="{!c._toggleNewContact}">New</button>
+        </aura:if>
+        <aura:if isTrue="{!v.showNewContactForm}">
+          <button class="slds-button slds-button--neutral" onclick="{!c._toggleNewContact}">Cancel</button>
+        </aura:if>
+      </div>
+    </div>
+    <div class="slds-card__body">
+      <aura:if isTrue="{!v.showNewContactForm}">
+        <div>
+          <form class="slds-form--inline">
+            <div class="slds-form-element">
+              <label class="slds-form-element__label" for="name">First Name</label>
+              <div class="slds-form-element__control">
+                <input id="firstName" class="slds-input" type="text" aura:id='firstName' />
+              </div>
+            </div>
+            <div class="slds-form-element">
+              <label class="slds-form-element__label" for="email">Last Name</label>
+              <div class="slds-form-element__control">
+                <input id="lastName" class="slds-input" type="text" aura:id='lastName' />
+              </div>
+            </div>
+            <div class="slds-form-element">
+              <button class="slds-button slds-button--brand" type="button" onclick="{!c._addNewContact}">Save</button>
+            </div>
+          </form>
+        </div>
+      </aura:if>
+      <aura:if isTrue="{!v.isExpanded}">
+        <table class="slds-table slds-table--bordered slds-no-row-hover slds-table--cell-buffer">
+          <thead>
+            <tr class="slds-text-title--caps">
+              <th scope="col">
+                <div class="slds-truncate" title="Name">Name</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Title">Title</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Email">Email</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate"></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <aura:iteration items="{!v.account.Contacts}" var="contact">
+              <c:flAccountEditor_contactRow_view contact="{!contact}" />
+            </aura:iteration>
+          </tbody>
+        </table>
+      </aura:if>
+    </div>
+  </article>
+</aura:component>
